@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="trello">
+<head>
+    <title>Trello</title>
+</head>
+<body ng-controller="body">
+
+    <h2>Add a Board</h2>
+    <div class="inputWrapper">
+    <form ng-submit="addBoard()">
+        Board Name: <textarea ng-required="true"  ng-model="newBoardName"></textarea>
+        Your Name: <input type="text" ng-required="true"  ng-model="newBoardUser"></input>
+        <input id="addBoard" type="submit" value="Add" >
+    </form>
+    </div>
+
+    <h2>Boards</h2>
+
+    <div ng-repeat = "(id,board) in boards"> <!--ng-repeat-->
+        <a href="" ng-click="selectBoard(id,board)"> <strong>{{board.name}}</strong></a> - by {{board.by}}
+    </div>
+    <div ng-show="selectedBoard">
+        <h2>Selected Board: {{selectedBoard.name}}</h2>
+        <h3>Add a Card</h3>
+        <form ng-submit="addCard()">
+            Card Name: <textarea ng-required="true"  ng-model="newCardName" ></textarea>
+            Your Name: <input type="text" ng-required="true"  ng-model="newCardUser"></input>
+            <input  type="submit" value="Add" >
+        </form>
+
+        <h3>Cards</h3>
+
+        <div ng-repeat = "(id,card) in cards"> <!--ng-repeat-->
+         <strong>{{card.name}}</strong></a>  {{card.by}}
+        </div>
+
+    </div>
+
+
+<script src="angular.min.js"></script>
+<script src="ng-code.js"></script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+</body>
+</html>
